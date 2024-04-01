@@ -37,42 +37,58 @@ function playRound (player, computer) {
     }
 }
 
-for (i = roundsPlay; i > 0; i--) {
+//Get game results after all rounds played, or end game after player can no longer win.
+
+function endGame (round) {
     
-    let playerSelection = prompt('Rock, paper or scissors?').toLocaleLowerCase();
-    let computerSelection = getComputerChoice();
-    let roundResults = playRound(playerSelection, computerSelection);
-    let roundsLeft = `${i-1} rounds left.`;
     let gameResults;
 
-    console.log (playerSelection, computerSelection, roundResults, roundsLeft);
-    console.log (playerScore, computerScore);
-
-    if ( i == 1 && playerScore == computerScore) {
+    if ( round == 1 && playerScore == computerScore) {
 
         gameResults = "Game over! It's a tie... How did that happen?";
         console.log(gameResults);
 
-    } else if (i == 1 && playerScore > computerScore) {
+    } else if (round == 1 && playerScore > computerScore) {
 
         gameResults = "Game over. You Win!";
         console.log(gameResults);
 
-    } else if (i == 1 && playerScore < computerScore) {
+    } else if (round == 1 && playerScore < computerScore) {
 
         gameResults = "Game over. You lose!";
         console.log(gameResults);
-        
+
     } else if (computerScore / roundsPlay > 0.5) {
 
         gameResults = `Game over. You lost in less than 5 rounds!`;
         console.log(gameResults);
-        break;
+        return true;
 
     }  else if (playerScore / roundsPlay > 0.5 ) {
         
         gameResults = `Game over. You won in less than 5 rounds!`;
         console.log(gameResults);
-        break;
+        return true;
     }
 }
+
+
+function playGame () {
+    
+    for (i = roundsPlay; i > 0; i--) {
+    
+        let playerSelection = prompt('Rock, paper or scissors?').toLocaleLowerCase();
+        let computerSelection = getComputerChoice();
+        let roundResults = playRound(playerSelection, computerSelection);
+        let roundsLeft = `${i-1} rounds left.`;
+        
+        console.log (playerSelection, computerSelection, roundResults, roundsLeft);
+        console.log (playerScore, computerScore);
+
+        if (endGame(i)) {
+            break;
+        }
+    }
+}
+
+playGame();
