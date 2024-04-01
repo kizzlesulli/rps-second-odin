@@ -106,6 +106,16 @@ function playGame () {
             break;
         }
     }
+
+    playAnother();
+}
+
+function playAnother () {
+    let answer = prompt('yes or no?').toLocaleLowerCase();
+
+    if (answer == 'yes') {
+        playGame();
+    }
 }
 
 playGame();
