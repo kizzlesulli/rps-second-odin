@@ -82,7 +82,7 @@ function playGame () {
         let roundResults = playRound(playerSelection, computerSelection);
         let roundsLeft;
         
-        if (playerScore / roundsPlay > 0.5 || computerScoreScore / roundsPlay > 0.5 ) {
+        if (playerScore / roundsPlay > 0.5 || computerScore / roundsPlay > 0.5 ) {
             
             roundsLeft = `0 rounds left.`;
 
