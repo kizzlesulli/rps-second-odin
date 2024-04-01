@@ -39,34 +39,27 @@ function playRound (player, computer) {
 //Get game results after all rounds played, or end game after player can no longer win.
 
 function endGame (round, playerScore, computerScore) {
-    
-    let gameResults;
 
     if ( round == 1 && playerScore == computerScore) {
 
-        gameResults = "Game over! It's a tie... How did that happen?";
-        console.log(gameResults);
+        console.log("Game over! It's a tie... How did that happen?");
 
     } else if (round == 1 && playerScore > computerScore) {
 
-        gameResults = "Game over. You Win!";
-        console.log(gameResults);
+        console.log("Game over. You Win!");
 
     } else if (round == 1 && playerScore < computerScore) {
 
-        gameResults = "Game over. You lose!";
-        console.log(gameResults);
+        console.log("Game over. You lose!");
 
     } else if (computerScore / roundsPlay > 0.5) {
 
-        gameResults = `Game over. You lost in less than 5 rounds!`;
-        console.log(gameResults);
+        console.log("Game over. You lost in less than 5 rounds!");
         return true;
 
     }  else if (playerScore / roundsPlay > 0.5 ) {
-        
-        gameResults = `Game over. You won in less than 5 rounds!`;
-        console.log(gameResults);
+
+        console.log("Game over. You won in less than 5 rounds!");
         return true;
     }
 }
@@ -81,10 +74,9 @@ function playGame () {
     
         let playerSelection = prompt('Rock, paper or scissors?').toLocaleLowerCase();
         let computerSelection = getComputerChoice();
-        let roundResults = playRound(playerSelection, computerSelection);
         let roundsLeft;
         
-        switch (roundResults) {
+        switch (playRound(playerSelection, computerSelection)) {
             case true:
                 console.log('You win this round.');
                 playerScore++;
