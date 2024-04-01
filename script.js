@@ -8,49 +8,71 @@ function getComputerChoice () {
 
 //Check player input vs computer choice and return results
 
-function playRound (player, computer) {
-    
-    let playerNumber ;
-    let results;
+const roundsPlay = 5;
+let playerScore = 0;
+let computerScore = 0;
 
-    // switch (playerSelection) {
-    //     case 'rock':
-    //         playerNumber = 0
-    //         break;
-    //     case 'paper':
-    //         playerNumber = 1;
-    //         break;
-    //     case 'scissors':
-    //         playerNumber = 2;
-    // }
+function playRound (player, computer) {
 
     //get results
-    if (
-        player == 'rock' && computer == 0 ||
+    if (player == 'rock' && computer == 0 ||
         player == 'paper' && computer == 1 ||
         player == 'scissors' && computer == 2) {
         
-        results = 'It\'s is a tie.';
+        return 'It\'s is a tie.';
 
-    } else if (
-        player == 'rock' && computer == 2 ||
+    } else if (player == 'rock' && computer == 2 ||
         player == 'paper' && computer == 0 ||
         player == 'scissors' && computer == 1) {
         
-        results = "You win.";
-    } else if (
-        player == 'rock' && computer == 1 ||
-        player == 'paper' && computer == 2 ||
-        player == 'scissors' && computer == 0){
-        
-        results = "Computer win.";
-    }
+        playerScore++;
+        return "You win this round.";
 
-    return results;
+    } else if (player == 'rock' && computer == 1 ||
+        player == 'paper' && computer == 2 ||
+        player == 'scissors' && computer == 0) {
+        
+        computerScore++;
+        return "Computer wins this round.";
+    }
 }
 
-let playerSelection = prompt('Rock, paper or scissors?').toLocaleLowerCase();
-let computerSelection = getComputerChoice();
-let results = playRound(playerSelection, computerSelection);
+for (i = roundsPlay; i > 0; i--) {
+    
+    let playerSelection = prompt('Rock, paper or scissors?').toLocaleLowerCase();
+    let computerSelection = getComputerChoice();
+    let roundResults = playRound(playerSelection, computerSelection);
+    let roundsLeft = `${i-1} rounds left.`;
+    let gameResults;
 
-console.log (playerSelection, computerSelection, results);
+    console.log (playerSelection, computerSelection, roundResults, roundsLeft);
+    console.log (playerScore, computerScore);
+
+    if ( i == 1 && playerScore == computerScore) {
+
+        gameResults = "Game over! It's a tie... How did that happen?";
+        console.log(gameResults);
+
+    } else if (i == 1 && playerScore > computerScore) {
+
+        gameResults = "Game over. You Win!";
+        console.log(gameResults);
+
+    } else if (i == 1 && playerScore < computerScore) {
+
+        gameResults = "Game over. You lose!";
+        console.log(gameResults);
+        
+    } else if (computerScore / roundsPlay > 0.5) {
+
+        gameResults = `Game over. You lost in less than 5 rounds!`;
+        console.log(gameResults);
+        break;
+
+    }  else if (playerScore / roundsPlay > 0.5 ) {
+        
+        gameResults = `Game over. You won in less than 5 rounds!`;
+        console.log(gameResults);
+        break;
+    }
+}
