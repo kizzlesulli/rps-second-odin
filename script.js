@@ -80,9 +80,18 @@ function playGame () {
         let playerSelection = prompt('Rock, paper or scissors?').toLocaleLowerCase();
         let computerSelection = getComputerChoice();
         let roundResults = playRound(playerSelection, computerSelection);
-        let roundsLeft = `${i-1} rounds left.`;
+        let roundsLeft;
         
-        console.log (playerSelection, computerSelection, roundResults, roundsLeft);
+        if (playerScore / roundsPlay > 0.5 || computerScoreScore / roundsPlay > 0.5 ) {
+            
+            roundsLeft = `0 rounds left.`;
+
+        } else {
+
+            roundsLeft = `${i-1} rounds left.`;
+        }
+
+        console.log (roundResults, roundsLeft);
         console.log (playerScore, computerScore);
 
         if (endGame(i)) {
