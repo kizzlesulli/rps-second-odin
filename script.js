@@ -91,8 +91,9 @@ function playGame () {
             roundsLeft = `${i-1} rounds left.`;
         }
 
-        console.log (roundResults, roundsLeft);
+        console.log (roundResults);
         console.log (playerScore, computerScore);
+        console.log (roundsLeft);
 
         if (endGame(i)) {
             break;
